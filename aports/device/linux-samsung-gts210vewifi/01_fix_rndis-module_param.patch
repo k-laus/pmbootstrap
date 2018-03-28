@@ -1,0 +1,34 @@
+fixes compile problem with module_param in f_rndis.c:
+
+  CC      drivers/usb/gadget/ether.o
+In file included from drivers/usb/gadget/ether.c:106:0:
+drivers/usb/gadget/f_rndis.c:70:41: error: expected ')' before 'uint'
+ module_param(rndis_dl_max_pkt_per_xfer, uint, S_IRUGO | S_IWUSR);
+                                         ^~~~
+drivers/usb/gadget/f_rndis.c:72:2: error: expected ')' before string constant
+  "Maximum packets per transfer for DL aggregation");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/usb/gadget/f_rndis.c:75:41: error: expected ')' before 'uint'
+ module_param(rndis_ul_max_pkt_per_xfer, uint, S_IRUGO | S_IWUSR);
+                                         ^~~~
+drivers/usb/gadget/f_rndis.c:77:2: error: expected ')' before string constant
+  "Maximum packets per transfer for UL aggregation");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drivers/usb/gadget/f_rndis.c:80:34: error: expected ')' before 'uint'
+ module_param(rx_trigger_enabled, uint, S_IRUGO | S_IWUSR);
+                                  ^~~~
+drivers/usb/gadget/f_rndis.c:81:38: error: expected ')' before string constant
+ MODULE_PARM_DESC(rx_trigger_enabled, "rx trigger_enable");
+                                      ^~~~~~~~~~~~~~~~~~~
+
+--- a/drivers/usb/gadget/f_rndis.c
++++ b/drivers/usb/gadget/f_rndis.c
+@@ -21,6 +21,7 @@
+ #include <linux/etherdevice.h>
+ 
+ #include <linux/atomic.h>
++#include <linux/moduleparam.h>
+ 
+ #include "u_ether.h"
+ #include "rndis.h"
+
