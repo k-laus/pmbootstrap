@@ -68,11 +68,6 @@ def generate(args, pkgname):
         _cross_configure="--disable-bootstrap --with-sysroot=/usr/$CTARGET"
     """
 
-    # Download links
-    link1 = ("gcc.gnu.org/pub/gcc/releases/gcc-${_pkgbase:-$pkgver}/gcc-"
-             "${_pkgbase:-$pkgver}.tar.xz")
-    link2 = "sourceware.org/pub/java/ecj-4.9.jar"
-
     replace_simple = {
         # Do not package libstdc++, do not add "g++-$ARCH" here (already
         # did that explicitly in the subpackages variable above, so
@@ -83,10 +78,6 @@ def generate(args, pkgname):
         # use CBUILDROOT as sysroot. In the original APKBUILD this is a local
         # variable, but we make it a global one.
         '*_cross_configure=*': None,
-
-        # Fix download links by replacing ftp:// with http://
-        'source="ftp://' + link1: 'source="http://' + link1,
-        "\tftp://" + link2: "\thttp://" + link2
     }
 
     pmb.aportgen.core.rewrite(args, pkgname, "main/gcc", fields,
