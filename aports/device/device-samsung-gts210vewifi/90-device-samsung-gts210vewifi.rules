@@ -1,8 +1,0 @@
-# set calibration matrix for 270 degree clockwise rotation, see [1]
-# ensure that device is seen as touchscreen, not touchpad, see [2]
-#
-# [1] https://wayland.freedesktop.org/libinput/doc/latest/udev_config.html
-# [2] https://wayland.freedesktop.org/libinput/doc/latest/udev_config.html#udev_device_type
-ACTION=="add|change", SUBSYSTEM=="input", ENV{DEVNAME}=="/dev/input/event2", \
-ENV{LIBINPUT_CALIBRATION_MATRIX}="0 1 0 -1 0 1", \
-ENV{ID_INPUT}="1", ENV{ID_INPUT_TOUCHPAD}="", ENV{ID_INPUT_TOUCHSCREEN}="1"

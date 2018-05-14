@@ -9,7 +9,7 @@ arch="noarch"
 options="!check"
 depends="postmarketos-base linux-samsung-gts210vewifi mkbootimg mesa-dri-swrast mdss-fb-init-hack"
 makedepends="devicepkg-dev"
-source="deviceinfo pointercal 90-$pkgname.rules"
+source="deviceinfo"
 
 build() {
 	devicepkg_build $startdir $pkgname
@@ -17,10 +17,6 @@ build() {
 
 package() {
 	devicepkg_package $startdir $pkgname
-	install -D -m644 "$srcdir"/pointercal \
-		"$pkgdir"/etc/pointercal
 }
 
-sha512sums="e1bc47767c57a55203ab5b12282f38b50187794da8d8ccdb4423c2f8b17744a97a32a1523390efcbdb5912b964f88c6dd65d0df2ac32a53d3f54e6c99546f728  deviceinfo
-6d96df378432868762974a34b49e650d900f11cf8d63436ef226bfbaf04eabb8f114e7bb0e678ffc8ee3f2cedcea9f3a24fcbeb1ba397a0f14d4569b986bf737  pointercal
-eed3e468475ce6d4a45c3a80502f2dd10630cfcc5e345711aa1daff9382c4af4038bafe09c33dcc6b3f7d1f86fa85c0b5a4ff29db9df89ac1479045a6566a3c5  90-device-samsung-gts210vewifi.rules"
+sha512sums="bc4d64b148fb1039782af73bf931b77970d6b81e3a61459bbdfa11f6f9edecc1a0753d1fe15ec4b2bd9ff61b08b1c764e760847bdf4947d542efff7f4089fbf3  deviceinfo"
